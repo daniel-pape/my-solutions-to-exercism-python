@@ -16,24 +16,24 @@ CHOICE = 'choice'
 from collections import Counter
 
 def score(dice, category):
-    def take_sum(dice, use_only = None):
-        if use_only:
-            return sum([_ for _ in dice if _ == use_only])
+    def take_sum(dice, use_only_face = None):
+        if use_only_face:
+            return sum([_ for _ in dice if _ == use_only_face])
         else:
             return sum(dice)
 
     if category == ONES:
-        return take_sum(dice, use_only=1)
+        return take_sum(dice, use_only_face=1)
     elif category == TWOS:
-        return take_sum(dice, use_only=2)
+        return take_sum(dice, use_only_face=2)
     elif category == THREES:
-        return take_sum(dice, use_only=3)
+        return take_sum(dice, use_only_face=3)
     elif category == FOURS:
-        return take_sum(dice, use_only=4)
+        return take_sum(dice, use_only_face=4)
     elif category == FIVES:
-        return take_sum(dice, use_only=5)
+        return take_sum(dice, use_only_face=5)
     elif category == SIXES:
-        return take_sum(dice, use_only=6)
+        return take_sum(dice, use_only_face=6)
     elif category == FULL_HOUSE:
         cnts = Counter(dice).values()
         is_valid = (sorted(cnts) == [2, 3])
@@ -45,7 +45,7 @@ def score(dice, category):
         is_valid = (most_common_count >= 4)
         too_much = (most_common_count - 4)
         correction = (too_much * most_common_face)
-        dice_sum = take_sum(dice, use_only=most_common_face)
+        dice_sum = take_sum(dice, use_only_face=most_common_face)
         score = dice_sum - correction
         return score if is_valid else 0
     elif category == LITTLE_STRAIGHT:
