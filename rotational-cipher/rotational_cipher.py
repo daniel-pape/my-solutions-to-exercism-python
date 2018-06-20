@@ -2,14 +2,14 @@ import string
 
 
 def rotate(text, rot):
-    letters = string.ascii_lowercase
-    alphabet_len = len(letters)
+    alphabet = string.ascii_lowercase
+    alphabet_len = len(alphabet)
 
     def rotate_char(c: str, key: int):
         def rotate_letter(l: chr, rot: int):
-            idx = ord(l.lower()) - 97
+            idx = alphabet.find(l.lower())
             rotated_idx = (idx + rot) % alphabet_len
-            rotated_letter = chr(rotated_idx + 97)
+            rotated_letter = alphabet[rotated_idx]
 
             if l.islower():
                 return rotated_letter
